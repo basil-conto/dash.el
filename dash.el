@@ -2209,9 +2209,7 @@ not, return a list with ARGS as elements."
   "Return a list with X repeated N times.
 Return nil if N is less than 1."
   (declare (pure t) (side-effect-free t))
-  (let (ret)
-    (--dotimes n (!cons x ret))
-    ret))
+  (and (wholenump n) (make-list n x)))
 
 (defun -sum (list)
   "Return the sum of LIST."
