@@ -1798,10 +1798,12 @@ Other list functions not fit to be classified elsewhere.
           (-third-item nil)
               ⇒ nil
 
- -- Function: -fourth-item (list)
+ -- Function: -fourth-item (arg1)
      Return the fourth item of LIST, or nil if LIST is too short.
 
      See also: ‘-fifth-item’ (*note -fifth-item::).
+
+     (fn LIST)
 
           (-fourth-item '(1 2 3 4))
               ⇒ 4
@@ -2869,7 +2871,7 @@ Index
                                                             (line  56)
 * -as->:                                 Threading macros.  (line  47)
 * -butlast:                              Other list operations.
-                                                            (line 311)
+                                                            (line 313)
 * -clone:                                Tree operations.   (line 123)
 * -compose:                              Function combinators.
                                                             (line  42)
@@ -2898,7 +2900,7 @@ Index
 * -elem-index:                           Indexing.          (line   9)
 * -elem-indices:                         Indexing.          (line  21)
 * -fifth-item:                           Other list operations.
-                                                            (line 291)
+                                                            (line 293)
 * -filter:                               Sublist selection. (line   8)
 * -find-index:                           Indexing.          (line  32)
 * -find-indices:                         Indexing.          (line  60)
@@ -2908,7 +2910,7 @@ Index
 * -first-item:                           Other list operations.
                                                             (line 242)
 * -fix:                                  Other list operations.
-                                                            (line 347)
+                                                            (line 349)
 * -fixfn:                                Function combinators.
                                                             (line 177)
 * -flatten:                              List to list.      (line  33)
@@ -2942,11 +2944,11 @@ Index
 * -last:                                 Other list operations.
                                                             (line 232)
 * -last-item:                            Other list operations.
-                                                            (line 301)
+                                                            (line 303)
 * -let:                                  Binding.           (line  66)
 * -let*:                                 Binding.           (line 200)
 * -list:                                 Other list operations.
-                                                            (line 334)
+                                                            (line 336)
 * -map:                                  Maps.              (line  10)
 * -map-first:                            Maps.              (line  38)
 * -map-indexed:                          Maps.              (line  66)
@@ -3027,7 +3029,7 @@ Index
 * -some->:                               Threading macros.  (line  60)
 * -some->>:                              Threading macros.  (line  72)
 * -sort:                                 Other list operations.
-                                                            (line 321)
+                                                            (line 323)
 * -splice:                               Maps.              (line  91)
 * -splice-list:                          Maps.              (line 111)
 * -split-at:                             Partitioning.      (line   8)
@@ -3202,67 +3204,67 @@ Ref: -first-item57683
 Ref: -second-item58099
 Ref: -third-item58379
 Ref: -fourth-item58657
-Ref: -fifth-item58923
-Ref: -last-item59185
-Ref: -butlast59477
-Ref: -sort59724
-Ref: -list60212
-Ref: -fix60543
-Node: Tree operations61083
-Ref: -tree-seq61279
-Ref: -tree-map62137
-Ref: -tree-map-nodes62580
-Ref: -tree-reduce63435
-Ref: -tree-reduce-from64317
-Ref: -tree-mapreduce64918
-Ref: -tree-mapreduce-from65778
-Ref: -clone67064
-Node: Threading macros67392
-Ref: ->67537
-Ref: ->>68029
-Ref: -->68534
-Ref: -as->69095
-Ref: -some->69550
-Ref: -some->>69924
-Ref: -some-->70360
-Node: Binding70831
-Ref: -when-let71043
-Ref: -when-let*71528
-Ref: -if-let72056
-Ref: -if-let*72451
-Ref: -let73068
-Ref: -let*77861
-Ref: -lambda78802
-Node: Side-effects79604
-Ref: -each79798
-Ref: -each-while80205
-Ref: -each-indexed80565
-Ref: -dotimes81083
-Ref: -doto81386
-Node: Destructive operations81813
-Ref: !cons81986
-Ref: !cdr82192
-Node: Function combinators82387
-Ref: -partial82661
-Ref: -rpartial83056
-Ref: -juxt83458
-Ref: -compose83890
-Ref: -applify84448
-Ref: -on84895
-Ref: -flip85418
-Ref: -const85730
-Ref: -cut86074
-Ref: -not86560
-Ref: -orfn86870
-Ref: -andfn87304
-Ref: -iteratefn87799
-Ref: -fixfn88502
-Ref: -prodfn90071
-Node: Development91137
-Node: Contribute91486
-Node: Changes92234
-Node: Contributors95233
-Node: Index96857
+Ref: -fifth-item58939
+Ref: -last-item59201
+Ref: -butlast59493
+Ref: -sort59740
+Ref: -list60228
+Ref: -fix60559
+Node: Tree operations61099
+Ref: -tree-seq61295
+Ref: -tree-map62153
+Ref: -tree-map-nodes62596
+Ref: -tree-reduce63451
+Ref: -tree-reduce-from64333
+Ref: -tree-mapreduce64934
+Ref: -tree-mapreduce-from65794
+Ref: -clone67080
+Node: Threading macros67408
+Ref: ->67553
+Ref: ->>68045
+Ref: -->68550
+Ref: -as->69111
+Ref: -some->69566
+Ref: -some->>69940
+Ref: -some-->70376
+Node: Binding70847
+Ref: -when-let71059
+Ref: -when-let*71544
+Ref: -if-let72072
+Ref: -if-let*72467
+Ref: -let73084
+Ref: -let*77877
+Ref: -lambda78818
+Node: Side-effects79620
+Ref: -each79814
+Ref: -each-while80221
+Ref: -each-indexed80581
+Ref: -dotimes81099
+Ref: -doto81402
+Node: Destructive operations81829
+Ref: !cons82002
+Ref: !cdr82208
+Node: Function combinators82403
+Ref: -partial82677
+Ref: -rpartial83072
+Ref: -juxt83474
+Ref: -compose83906
+Ref: -applify84464
+Ref: -on84911
+Ref: -flip85434
+Ref: -const85746
+Ref: -cut86090
+Ref: -not86576
+Ref: -orfn86886
+Ref: -andfn87320
+Ref: -iteratefn87815
+Ref: -fixfn88518
+Ref: -prodfn90087
+Node: Development91153
+Node: Contribute91502
+Node: Changes92250
+Node: Contributors95249
+Node: Index96873
 
 End Tag Table
 

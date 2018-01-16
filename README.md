@@ -243,7 +243,7 @@ Other list functions not fit to be classified elsewhere.
 * [-first-item](#-first-item-list) `(list)`
 * [-second-item](#-second-item-arg1) `(arg1)`
 * [-third-item](#-third-item-arg1) `(arg1)`
-* [-fourth-item](#-fourth-item-list) `(list)`
+* [-fourth-item](#-fourth-item-arg1) `(arg1)`
 * [-fifth-item](#-fifth-item-list) `(list)`
 * [-last-item](#-last-item-list) `(list)`
 * [-butlast](#-butlast-list) `(list)`
@@ -1871,7 +1871,7 @@ See also: [`-third-item`](#-third-item-arg1).
 
 Return the third item of `list`, or nil if `list` is too short.
 
-See also: [`-fourth-item`](#-fourth-item-list).
+See also: [`-fourth-item`](#-fourth-item-arg1).
 
 (fn `list`)
 
@@ -1880,11 +1880,13 @@ See also: [`-fourth-item`](#-fourth-item-list).
 (-third-item nil) ;; => nil
 ```
 
-#### -fourth-item `(list)`
+#### -fourth-item `(arg1)`
 
 Return the fourth item of `list`, or nil if `list` is too short.
 
 See also: [`-fifth-item`](#-fifth-item-list).
+
+(fn `list`)
 
 ```el
 (-fourth-item '(1 2 3 4)) ;; => 4

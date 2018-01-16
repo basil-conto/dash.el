@@ -2872,10 +2872,12 @@ See also: @code{-fourth-item} (@pxref{-fourth-item}).
 @end defun
 
 @anchor{-fourth-item}
-@defun -fourth-item (list)
+@defun -fourth-item (arg1)
 Return the fourth item of @var{list}, or nil if @var{list} is too short.
 
 See also: @code{-fifth-item} (@pxref{-fifth-item}).
+
+(fn @var{list})
 
 @example
 @group

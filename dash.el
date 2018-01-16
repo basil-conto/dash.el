@@ -630,26 +630,36 @@ See also: `-third-item'.
 
 \(fn LIST)")
 
-(defalias '-third-item 'caddr
+(defalias '-third-item
+  (if (fboundp 'caddr)
+      #'caddr
+    (lambda (list)
+      (declare (pure t) (side-effect-free t))
+      (car (cddr list))))
   "Return the third item of LIST, or nil if LIST is too short.
 
 See also: `-fourth-item'.
 
 \(fn LIST)")
 
-(defun -fourth-item (list)
+(defalias '-fourth-item
+  (if (fboundp 'cadddr)
+      #'cadddr
+    (lambda (list)
+      (declare (pure t) (side-effect-free t))
+      (car (cddr list))))
   "Return the fourth item of LIST, or nil if LIST is too short.
 
-See also: `-fifth-item'."
-  (declare (pure t) (side-effect-free t))
-  (car (cdr (cdr (cdr list)))))
+See also: `-fifth-item'.
+
+\(fn LIST)")
 
 (defun -fifth-item (list)
   "Return the fifth item of LIST, or nil if LIST is too short.
 
 See also: `-last-item'."
   (declare (pure t) (side-effect-free t))
-  (car (cdr (cdr (cdr (cdr list))))))
+  (car (cddr (cddr list))))
 
 ;; TODO: emacs23 support, when dropped remove the condition
 (eval-when-compile
