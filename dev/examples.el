@@ -418,7 +418,20 @@ new list."
   (defexamples -unfold
     (-unfold (lambda (x) (unless (= x 0) (cons x (1- x)))) 10) => '(10 9 8 7 6 5 4 3 2 1)
     (--unfold (when it (cons it (cdr it))) '(1 2 3 4)) => '((1 2 3 4) (2 3 4) (3 4) (4))
-    (--unfold (when it (cons it (butlast it))) '(1 2 3 4)) => '((1 2 3 4) (1 2 3) (1 2) (1))))
+    (--unfold (when it (cons it (butlast it))) '(1 2 3 4)) => '((1 2 3 4) (1 2 3) (1 2) (1)))
+
+  (defexamples -repeat
+    (-repeat 3 :a) => '(:a :a :a)
+    (-repeat 1 :a) => '(:a)
+    (-repeat 0 :a) => nil
+    (-repeat -1 :a) => nil)
+
+  (defexamples -cycle
+    (-take 5 (-cycle '(1 2 3))) => '(1 2 3 1 2)
+    (-take 7 (-cycle '(1 "and" 3))) => '(1 "and" 3 1 "and" 3 1)
+    (-zip (-cycle '(1 2 3)) '(1 2)) => '((1 . 1) (2 . 2))
+    (-zip-with 'cons (-cycle '(1 2 3)) '(1 2)) => '((1 . 1) (2 . 2))
+    (-map (-partial '-take 5) (-split-at 5 (-cycle '(1 2 3)))) => '((1 2 3 1 2) (3 1 2 3 1))))
 
 (def-example-group "Predicates" nil
   (defexamples -any?
@@ -658,12 +671,6 @@ new list."
     (-rotate 3 '(1 2 3 4 5 6 7)) => '(5 6 7 1 2 3 4)
     (-rotate -3 '(1 2 3 4 5 6 7)) => '(4 5 6 7 1 2 3))
 
-  (defexamples -repeat
-    (-repeat 3 :a) => '(:a :a :a)
-    (-repeat 1 :a) => '(:a)
-    (-repeat 0 :a) => nil
-    (-repeat -1 :a) => nil)
-
   (defexamples -cons*
     (-cons* 1 2) => '(1 . 2)
     (-cons* 1 2 3) => '(1 2 . 3)
@@ -707,13 +714,6 @@ new list."
   (defexamples -unzip
     (-unzip (-zip '(1 2 3) '(a b c) '("e" "f" "g"))) => '((1 2 3) (a b c) ("e" "f" "g"))
     (-unzip '((1 2) (3 4) (5 6) (7 8) (9 10))) => '((1 3 5 7 9) (2 4 6 8 10)))
-
-  (defexamples -cycle
-    (-take 5 (-cycle '(1 2 3))) => '(1 2 3 1 2)
-    (-take 7 (-cycle '(1 "and" 3))) => '(1 "and" 3 1 "and" 3 1)
-    (-zip (-cycle '(1 2 3)) '(1 2)) => '((1 . 1) (2 . 2))
-    (-zip-with 'cons (-cycle '(1 2 3)) '(1 2)) => '((1 . 1) (2 . 2))
-    (-map (-partial '-take 5) (-split-at 5 (-cycle '(1 2 3)))) => '((1 2 3 1 2) (3 1 2 3 1)))
 
   (defexamples -pad
     (-pad 0 '()) => '(())
