@@ -1309,28 +1309,32 @@ See also: `-zip'"
   (apply '-zip lists))
 
 (defun -cycle (list)
-  "Return an infinite copy of LIST that will cycle through the
-elements and repeat from the beginning."
+  "Return an infinite (circular) copy of LIST.
+The returned list comprises the elements of LIST repeated over
+and over in the same order."
   (declare (pure t) (side-effect-free t))
-  (let ((newlist (-map 'identity list)))
+  (let ((newlist (copy-sequence list)))
     (nconc newlist newlist)))
 
 (defun -pad (fill-value &rest lists)
-  "Appends FILL-VALUE to the end of each list in LISTS such that they
-will all have the same length."
-  (let* ((annotations (-annotate 'length lists))
-         (n (-max (-map 'car annotations))))
-    (--map (append (cdr it) (-repeat (- n (car it)) fill-value)) annotations)))
-
-(defun -annotate (fn list)
-  "Return a list of cons cells where each cell is FN applied to each
-element of LIST paired with the unmodified element of LIST."
-  (-zip (-map fn list) list))
+  "Pad each of LISTS with FILL-VALUE until they have equal lengths.
+Ensure all LISTS are as long as the longest list in LISTS by
+repeatedly appending FILL-VALUE to the shorter lists, and return
+the resulting LISTS."
+  (let* ((lens (mapcar #'length lists))
+         (maxlen (apply #'max 0 lens)))
+    (--map (append it (make-list (- maxlen (pop lens)) fill-value)) lists)))
 
 (defmacro --annotate (form list)
   "Anaphoric version of `-annotate'."
   (declare (debug (form form)))
-  `(-annotate (lambda (it) ,form) ,list))
+  `(--map (cons ,form it) ,list))
+
+(defun -annotate (fn list)
+  "Pair each item in LIST with the result of calling FN on it.
+The result is an alist where each cdr is the corresponding item
+in LIST, and each car is the result of calling FN on that item."
+  (--annotate (funcall fn it) list))
 
 (defun dash--table-carry (lists restore-lists &optional re)
   "Helper for `-table' and `-table-flat'.
@@ -2452,12 +2456,10 @@ not, return a list with ARGS as elements."
     (if (listp arg) arg args)))
 
 (defun -repeat (n x)
-  "Return a list with X repeated N times.
-Return nil if N is less than 1."
+  "Return a list of length N, with each element being X.
+If N is negative, return nil."
   (declare (pure t) (side-effect-free t))
-  (let (ret)
-    (--dotimes n (!cons x ret))
-    ret))
+  (and (natnump n) (make-list n x)))
 
 (defun -sum (list)
   "Return the sum of LIST."
